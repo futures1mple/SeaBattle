@@ -16,7 +16,7 @@ const game = {
     collision: [],
     generateShip () {
         for (let i=0; i<this.optionShip.count.length; i++) {
-            for(let j=0; j<this.optionShip.count.length[i]; j++) {
+            for(let j=0; j<this.optionShip.count[i]; j++) {
                 const size = this.optionShip.size[i];
                 const ship = this.generateOptionShip(size);
                 this.ships.push(ship);
@@ -121,8 +121,8 @@ const fire = (event) => {
         || target.tagName !== 'TD' || 
         !game.shipCount) return;
     show.miss(target);
+    console.log(game.shipCount);
     play.updateData = 'shot';
-
     for (let i=0; i<game.ships.length; i++) {
         const ship = game.ships[i];
         const index = ship.location.indexOf(target.id);
@@ -139,7 +139,7 @@ const fire = (event) => {
 
                 game.shipCount -= 1;
 
-                if(!game.shipCount) {
+                if(game.shipCount<1) {
                     header.textContent = 'Game Over!';
                     header.style.color = 'red';
 
